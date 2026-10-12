@@ -1,4 +1,6 @@
-export const mailDummy = [
+import { IMail } from "../model/mail.model";
+
+export const mailDummy:IMail[] = [
   {
     id: 1,
     sender: 'Alex',

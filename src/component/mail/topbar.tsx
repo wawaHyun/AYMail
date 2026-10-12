@@ -1,5 +1,5 @@
 'use client'
-import { MenuButton1, MenuButton2 } from "@/src/ui/button";
+import { ThreelineMenuButton, MaruiMenuButton } from "@/src/ui/button";
 import { MyIcon } from "./myIcon";
 import { useGlobalStateAction, useGlobalStateData } from "@/src/store/globalState.store";
 
@@ -19,14 +19,14 @@ export function TopbarMenu() {
 
     return (
         <header className="flex h-full items-center border-b px-4" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}>
-            <MenuButton1 style='mr-4'>☰</MenuButton1>
+            <ThreelineMenuButton style='mr-4'>☰</ThreelineMenuButton>
 
             <div className="mr-auto text-xl font-semibold tracking-tight" style={{ color: 'var(--color-primary)' }}>
                 AYMail
             </div>
 
-            <MenuButton2>?</MenuButton2>
-            <MenuButton2 onClick={handleTheme}>{globalState.theme === 'light' ? '☾' : '☀'}</MenuButton2>
+            <MaruiMenuButton>?</MaruiMenuButton>
+            <MaruiMenuButton onClick={handleTheme}>{globalState.theme === 'light' ? '☾' : '☀'}</MaruiMenuButton>
             <MyIcon>U</MyIcon>
         </header>
     )
