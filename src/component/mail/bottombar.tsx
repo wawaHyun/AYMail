@@ -1,4 +1,5 @@
-import { mailMenuBottomData } from "@/src/data/mail/mailMenu";
+'use client'
+import { mailMenuBottomData } from "@/src/data/menu/mailMenu";
 import { BottombarButton } from "@/src/ui/button";
 
 export function BottomMenu() {

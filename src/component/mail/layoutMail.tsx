@@ -1,4 +1,3 @@
-'use client'
 
 import { TopbarMenu } from '@/src/component/mail/topbar';
 import { SidebarMenu } from '@/src/component/mail/sidebar';

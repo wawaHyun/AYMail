@@ -1,3 +1,4 @@
+'use client'
 import { IButton } from "@/src/ui/button"
 
 export const MyIcon = ({onClick, style, children, }: IButton) =>{

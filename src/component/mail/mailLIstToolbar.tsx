@@ -1,6 +1,5 @@
-'use client'
 
-export function MailToolbarMenu() {
+export function MailListToolbarMenu() {
     return (
         <div className="">
            <div className="flex h-14 items-center border-b px-3" style={{ borderColor: 'var(--color-border)' }}>
