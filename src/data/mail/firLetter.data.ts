@@ -11,7 +11,7 @@ export const firstLetter: Record<string, IScenarioMail> = {
     body: '알 수 없는 기호로 쓰인 편지가 도착했다...',
     time: '09:00',
     replies: [
-      { type: 'positive', label: '답장한다', replyBody: '읽을 수 있습니다. 계속 보내주세요.', nextMailId: 'fl-02-success', ending: undefined },
+      { type: 'positive', label: '답장한다', replyBody: '읽을 수 있습니다. 계속 보내주세요.', nextMailId: 'fl-02-success', endingType: undefined },
       { type: 'negative', label: '무시한다', replyBody: '잘못 보내신 것 같습니다.', nextMailId: 'fl-02-fail' },
     ],
   },
@@ -24,6 +24,7 @@ export const firstLetter: Record<string, IScenarioMail> = {
     preview: '다른 차원의 편지를 전하겠습니다...', 
     body: '다른 차원의 편지를 전하겠습니다...', 
     time: '09:05',
+    ending: { key: 'fl-success', title: '다른 차원의 의뢰', kind: 'good' },
     // replies 없음 → 엔딩. 두 번째 시나리오 시작 트리거는 아래 ending 처리에서
   },
   'fl-02-fail': {
@@ -35,5 +36,6 @@ export const firstLetter: Record<string, IScenarioMail> = {
     preview: '일이나 해야겠다.', 
     body: '일이나 해야겠다.', 
     time: '09:05',
+    ending: { key: 'fl-fail', title: '일이나 해야겠다', kind: 'bad' },
   },
 };

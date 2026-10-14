@@ -50,7 +50,7 @@ export const SidebarButton = ({ onClick, style, children, select, icon, name, un
       {name && (
         <span
           role="tooltip"
-          className="pointer-events-none absolute left-full top-1/2 z-10 ml-2 -translate-y-1/2 whitespace-nowrap rounded-md px-2 py-1 text-xs opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
           style={{ backgroundColor: 'var(--color-text)', color: 'var(--color-background)' }}>
           {name}
         </span>

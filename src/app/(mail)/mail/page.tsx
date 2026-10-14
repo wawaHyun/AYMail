@@ -12,7 +12,7 @@ import type { IMail } from '@/src/model/mail.model';
 
 const PAGE_SIZE = 15;
 
-export default function InboxPage() {
+export default function MailListPage() {
   const router = useRouter();
   const logs = useMailStore((s) => s.logs);
 
@@ -37,8 +37,8 @@ export default function InboxPage() {
               className="flex h-8 w-full items-center border-b px-2 text-left text-xs transition hover:opacity-80 sm:h-10 sm:px-3 sm:text-sm md:h-12 md:px-4"
               style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
             >
-              <span className="mr-3 hidden sm:block" style={{ color: 'var(--color-text-muted)' }}>□</span>
-              <span className="mr-3 hidden sm:block" style={{ color: 'var(--color-text-muted)' }}>☆</span>
+              <span className="hidden w-10 shrink-0 text-center sm:block text-lg" style={{ color: 'var(--color-text-muted)' }}>□</span>
+              <span className="hidden w-10 shrink-0 text-center sm:block " style={{ color: 'var(--color-text-muted)' }}>☆</span>
 
               <span className="w-24 shrink-0 truncate text-sm">{mail.sender}</span>
 

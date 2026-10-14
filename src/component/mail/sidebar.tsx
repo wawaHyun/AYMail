@@ -12,12 +12,11 @@ export function SidebarMenu() {
         menulist.find((v) => v.state)?.id ?? menulist[0]?.id
     );
 
-    const handleSidebar = (id?: number) => {
+    const handleSidebar = (id?: number,url?:string) => {
         setSelectedId(id);
-        router.push('/mail');
+        router.push(`${url}`);
     };
 
-    
     return (
         <div className="flex w-full ">
             <aside className="w-full h-full px-3 py-4">
@@ -28,7 +27,7 @@ export function SidebarMenu() {
                 <nav className="space-y-1 h-full ">
                     {menulist.map((v) => (
                         <div key={v.id}>
-                            <SidebarButton onClick={() => handleSidebar(v.id)} icon={v.icon!} name={v.script} select={v.id === selectedId} unread={v.unread!}>{v.name}</SidebarButton>
+                            <SidebarButton onClick={() => handleSidebar(v.id,v.url)} icon={v.icon!} name={v.script} select={v.id === selectedId} unread={v.unread!}>{v.name}</SidebarButton>
                         </div>
                     ))}
                 </nav>

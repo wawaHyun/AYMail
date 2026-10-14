@@ -18,13 +18,17 @@ export interface IReplyOption {
   label: string;          // 버튼 문구 (예: "받아들인다")
   replyBody: string;      // 유저가 보낸 답장 본문
   nextMailId: string | null;  // 이 선택 후 도착할 메일 (null이면 엔딩)
-  ending?: 'success' | 'fail';
+  endingType?: 'success' | 'fail';
 }
 export interface IScenarioMail extends IMail {
     kind: 'scenario';
   chapter: string; // 'first-letter'
   replies?: IReplyOption[]; // 없으면 답장 불가(엔딩 메일 등)
-  ending?: 'success' | 'fail';
+  ending?: {
+    key: string;        // 엔딩 고유 키 (모음 저장용)
+    title: string;      // 모음 화면에 보일 이름
+    kind: 'good' | 'bad';
+  };
 }
 export interface IMailLog {
   mailId: string;                  // 받은 시나리오 메일
