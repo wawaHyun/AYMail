@@ -1,34 +1,50 @@
 'use client'
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 import { IMailLog, IReplyOption } from '../model/mail.model';
 
-interface IMailStore {
-  logs: IMailLog[];
-  reply: (mailId: string, option: IReplyOption) => void;
-  reset: () => void;
+interface MailState {
+    data: IMailLog[];
+    action: {
+        reply: (mailId: string, option: IReplyOption) => void;
+        reset: () => void;
+    };
 }
 
-export const useMailStore = create<IMailStore>()(
-  persist(
-    (set) => ({
-      logs: [{ mailId: 'fl-01', receivedAt: '09:00' }], // 시작 메일
-      reply: (mailId, option) =>
-        set((s) => {
-          const now = new Date().toISOString();
-          const updated = s.logs.map((l) =>
-            l.mailId === mailId
-              ? { ...l, repliedWith: option.type, replyBody: option.replyBody, repliedAt: now }
-              : l
-          );
-          // 다음 메일 도착
-          if (option.nextMailId && !updated.some((l) => l.mailId === option.nextMailId)) {
-            updated.push({ mailId: option.nextMailId, receivedAt: now });
-          }
-          return { logs: updated };
-        }),
-      reset: () => set({ logs: [{ mailId: 'fl-01', receivedAt: '09:00' }] }),
-    }),
-    { name: 'mail-progress' }
-  )
+const createStartLog = (): IMailLog => ({
+    mailId: 'fl-01',
+    receivedAt: new Date().toISOString(),
+});
+
+const useMailStore = create(persist<MailState>((set) => ({
+    data: [createStartLog()],
+    action: {
+        reply: (mailId: string, option: IReplyOption) =>
+            set((s) => {
+                const now = new Date().toISOString();
+                const updated = s.data.map((l) =>
+                    l.mailId === mailId
+                        ? { ...l, repliedWith: option.type, replyBody: option.replyBody, repliedAt: now }
+                        : l
+                );
+                // 다음 메일 도착
+                if (option.nextMailId && !updated.some((l) => l.mailId === option.nextMailId)) {
+                    updated.push({ mailId: option.nextMailId, receivedAt: now });
+                }
+                return { data: updated };
+            }),
+        reset: () => {
+            set({ data: [createStartLog()] });
+            console.log("store.MailStore reset");
+        }
+    }
+}),
+    {
+        name: 'mail-progress',
+        storage: createJSONStorage(() => localStorage),
+    })
 );
+
+export const useMailAction = () => useMailStore((store) => store.action)
+export const useMailData = () => useMailStore((store) => store.data)
+export const useMailState = () => useMailStore.getState()

@@ -3,18 +3,19 @@
 import { MailListToolbarMenu } from '@/src/component/mail/mailLIstToolbar'
 import { BottomMenu } from '@/src/component/mail/bottombar';
 import { useRouter } from 'next/navigation';
-import { useMailStore } from '@/src/store/mail.store';
+
 import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
 import { mailRegistry } from '@/src/data/mail/registry';
 import { workMails } from '@/src/data/mail/workMails';
 import type { IMail } from '@/src/model/mail.model';
+import { useMailData } from '@/src/store/mail.store';
 
 const PAGE_SIZE = 15;
 
 export default function MailListPage() {
   const router = useRouter();
-  const logs = useMailStore((s) => s.logs);
+  const logs = useMailData();
 
   const scenarioMails = logs
     .map((l) => mailRegistry[l.mailId])

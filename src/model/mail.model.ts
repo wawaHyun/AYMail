@@ -5,11 +5,11 @@ export interface IMail {
   subject: string;
   preview: string;       // 목록용
   body: string;          // 상세용
-  time: string;
+  time?: string;
   kind: 'work' | 'scenario';
   chapter?: string;      // 시나리오일 때만
   replies?: IReplyOption[];
-} 
+}
 
 export type ChoiceType = 'positive' | 'negative';
 
@@ -21,9 +21,10 @@ export interface IReplyOption {
   endingType?: 'success' | 'fail';
 }
 export interface IScenarioMail extends IMail {
-    kind: 'scenario';
+  kind: 'scenario';
   chapter: string; // 'first-letter'
   replies?: IReplyOption[]; // 없으면 답장 불가(엔딩 메일 등)
+  threadId: string,
   ending?: {
     key: string;        // 엔딩 고유 키 (모음 저장용)
     title: string;      // 모음 화면에 보일 이름

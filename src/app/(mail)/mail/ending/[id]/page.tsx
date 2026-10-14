@@ -1,6 +1,5 @@
 import { MailDetail } from '@/src/component/mail/mailDetail';
 import { Suspense } from 'react';
-import { useEndingAction } from '@/src/store/ending.store';
 
 export default function EndingDetailPage({ params }: { params: Promise<{ id: string }> }) {
     return (

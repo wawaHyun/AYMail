@@ -3,14 +3,14 @@ import { ThreelineMenuButton, MaruiMenuButton, TopbarLogoButton } from "@/src/ui
 import { MyIcon } from "./myIcon";
 import { useGlobalStateAction, useGlobalStateData } from "@/src/store/globalState.store";
 import { useRouter } from "next/navigation";
-import { useMailStore } from "@/src/store/mail.store";
 import { useEndingAction } from "@/src/store/ending.store";
+import { useMailAction } from "@/src/store/mail.store";
 
 export function TopbarMenu() {
     const globalState = useGlobalStateData()
     const globalAction = useGlobalStateAction()
     const router = useRouter();
-    const restart = useMailStore((s) => s.reset);
+    const restart = useMailAction().reset;
     const reset = useEndingAction().clean;
 
     const handleTheme = () => {
