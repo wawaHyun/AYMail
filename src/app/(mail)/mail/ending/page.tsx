@@ -5,7 +5,7 @@ import { BottomMenu } from '@/src/component/mail/bottombar';
 import { useRouter } from 'next/navigation';
 import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
-import { firstLetter } from '@/src/data/mail/firLetter.data';
+import { firLetterData } from '@/src/data/mail/firLetter.data';
 import { useMounted } from '@/src/hook/useMounted';
 import { useEndingData } from '@/src/store/ending.store';
 
@@ -13,7 +13,7 @@ const PAGE_SIZE = 15;
 
 export default function EndingListPage() {
     const router = useRouter();
-    const allEndings = Object.values(firstLetter).filter((m) => m.ending);
+    const allEndings = Object.values(firLetterData).filter((m) => m.ending);
     const { unlockedEndings } = useEndingData();
     const mounted = useMounted();
     const { page, setPage, pageItems } = usePagination(allEndings, PAGE_SIZE);

@@ -12,10 +12,6 @@ interface MailState {
     };
 }
 
-const createStartLog = (): IMailLog => ({
-    mailId: 'fl-01',
-    receivedAt: new Date().toISOString(),
-});
 const TUTORIAL_CLEAR_KEY = 'fl-success';
 
 const isTutorialDone = () =>
@@ -25,7 +21,7 @@ const createStartLogs = (): IMailLog[] =>
     isTutorialDone() ? [] : [{ mailId: 'fl-01', receivedAt: new Date().toISOString() }];
 
 const useMailStore = create(persist<MailState>((set) => ({
-    data: [createStartLog()],
+    data: createStartLogs(),
     action: {
         reply: (mailId: string, option: IReplyOption) =>
             set((s) => {

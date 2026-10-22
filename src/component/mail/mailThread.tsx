@@ -5,7 +5,7 @@ import type { IMail, IReplyOption } from "@/src/model/mail.model";
 import { MailDetailToolbar } from "./mailDetailToolbar";
 import { MailButton } from "@/src/ui/button";
 import { MyIcon } from "./myIcon";
-import { firstLetter } from "@/src/data/mail/firLetter.data";
+import { firLetterData } from "@/src/data/mail/firLetter.data";
 import { useEndingAction } from "@/src/store/ending.store";
 import { useMailAction, useMailData } from "@/src/store/mail.store";
 
@@ -18,7 +18,7 @@ export function MailThread({ mail }: { mail: IMail }) {
     const replies = mail.kind === 'scenario' ? mail.replies : undefined;
     const handleReply = (opt: IReplyOption) => {
         // 다음 메일이 엔딩이면 도달하는 즉시 해금 (reply 안에서 reset이 일어나도 안전하도록 먼저)
-        const next = opt.nextMailId ? firstLetter[opt.nextMailId] : undefined;
+        const next = opt.nextMailId ? firLetterData[opt.nextMailId] : undefined;
         if (next?.ending) unlockEnding(next.ending.key);
 
         reply(mail.id, opt);
