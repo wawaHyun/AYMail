@@ -80,4 +80,4 @@ const useEndingStore = create(persist<EndingState, [], [], Pick<EndingState, 'da
 
 export const useEndingAction = () => useEndingStore((store) => store.action)
 export const useEndingData = () => useEndingStore((store) => store.data)
-export const useEndingState = () => useEndingStore.getState()
+export const getEndingState = () => useEndingStore.getState()

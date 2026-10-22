@@ -2,6 +2,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { IMailLog, IReplyOption } from '../model/mail.model';
+import { getEndingState } from './ending.store';
 
 interface MailState {
     data: IMailLog[];
@@ -15,6 +16,13 @@ const createStartLog = (): IMailLog => ({
     mailId: 'fl-01',
     receivedAt: new Date().toISOString(),
 });
+const TUTORIAL_CLEAR_KEY = 'fl-success';
+
+const isTutorialDone = () =>
+    getEndingState().data.unlockedEndings.includes(TUTORIAL_CLEAR_KEY);
+
+const createStartLogs = (): IMailLog[] =>
+    isTutorialDone() ? [] : [{ mailId: 'fl-01', receivedAt: new Date().toISOString() }];
 
 const useMailStore = create(persist<MailState>((set) => ({
     data: [createStartLog()],
@@ -34,7 +42,7 @@ const useMailStore = create(persist<MailState>((set) => ({
                 return { data: updated };
             }),
         reset: () => {
-            set({ data: [createStartLog()] });
+            set({ data: createStartLogs() });
             console.log("store.MailStore reset");
         }
     }
@@ -47,4 +55,4 @@ const useMailStore = create(persist<MailState>((set) => ({
 
 export const useMailAction = () => useMailStore((store) => store.action)
 export const useMailData = () => useMailStore((store) => store.data)
-export const useMailState = () => useMailStore.getState()
+export const getMailState = () => useMailStore.getState()

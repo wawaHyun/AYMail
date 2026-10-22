@@ -1,6 +1,5 @@
 'use client'
 
-import { MailListToolbarMenu } from '@/src/component/mail/mailLIstToolbar'
 import { BottomMenu } from '@/src/component/mail/bottombar';
 import { useRouter } from 'next/navigation';
 
@@ -10,6 +9,7 @@ import { mailRegistry } from '@/src/data/mail/registry';
 import { workMails } from '@/src/data/mail/workMails';
 import type { IMail } from '@/src/model/mail.model';
 import { useMailData } from '@/src/store/mail.store';
+import { MailListToolbarMenu } from '@/src/component/mail/mailListToolbar';
 
 const PAGE_SIZE = 15;
 
