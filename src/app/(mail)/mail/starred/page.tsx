@@ -7,7 +7,7 @@ import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
 import { useMounted } from '@/src/hook/useMounted';
 import { useEndingData } from '@/src/store/ending.store';
-import { scenarioListData } from '@/src/data/mail/scenario.data';
+import { scenarioListData } from '@/src/data/menu/scenario.data';
 
 const PAGE_SIZE = 15;
 

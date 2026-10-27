@@ -6,7 +6,7 @@ export interface IMail {
   preview: string;       // 목록용
   body: string;          // 상세용
   time?: string;
-  kind: 'work' | 'scenario' | 'sohura';
+  kind: 'work' | 'scenario'| 'first' | 'scenario'  | 'sohura';
   chapter?: string;      // 시나리오일 때만
   replies?: IReplyOption[];
 }
