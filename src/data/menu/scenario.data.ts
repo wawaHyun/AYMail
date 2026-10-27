@@ -7,9 +7,9 @@ export const scenarioListData: Record<string, IScenarioMail> = {
     // 튜토리얼
     "sce-01": {
         id: "sce-01",
-        kind: "game",
-        threadId: "sce-01",
-        chapter: "firstLetter",
+        kind: "scenario",
+        // threadId: "sce-01",
+        chapter: "firstletter",
         sender: "postman",
         subject: "⟡ ⍙⏃⌇⊑ ⟟⌇ ⌿⍜⌇⏁",
         preview: "알 수 없는 기호로 쓰인 편지가 도착했다...",
@@ -21,8 +21,8 @@ export const scenarioListData: Record<string, IScenarioMail> = {
     // 텍스트 선택지 로그라이크 (스탯 → 엔딩)
     "sce-02": {
         id: "sce-02",
-        kind: "game",
-        threadId: "sce-02",
+        kind: "scenario",
+        // threadId: "sce-02",
         chapter: "sohura",
         sender: "postman",
         subject: "장거리 연애를 도와줘!",
@@ -40,9 +40,9 @@ export const scenarioListData: Record<string, IScenarioMail> = {
     // 방치형 수집
     "sce-03": {
         id: "sce-03",
-        kind: "game",
-        threadId: "sce-03",
-        chapter: "dontLate",
+        kind: "scenario",
+        // threadId: "sce-03",
+        chapter: "dontlate",
         sender: "postman",
         subject: "일해라 우체부",
         preview: "바쁘다 바빠 현대생활",
@@ -53,9 +53,9 @@ export const scenarioListData: Record<string, IScenarioMail> = {
     // 서바이벌 웹게임
     "sce-04": {
         id: "sce-04",
-        kind: "game",
+        kind: "scenario",
         threadId: "sce-04",
-        chapter: "survival",
+        chapter: "survivaluniverse",
         sender: "postman",
         subject: "이 거지 같은 우주 한복판에 버려지다니!",
         preview: "편지 배달 중에 우주선이 난파돼 우주 미아가 되었다.",

@@ -1,11 +1,11 @@
-import { IScenarioMail } from "@/src/model/mail.model";
+import { IFirstletterMail } from "@/src/model/mail.model";
 
 // 같은 시나리오(threadId)는 subject를 동일하게 쓰고, 'Re:'는 화면에서 계산해서 붙인다.
 // time은 연출용 고정값(fl-01의 99:99)만 두고, 나머지는 생략하면 도착 시각(receivedAt)을 쓴다.
-export const firLetterData: Record<string, IScenarioMail> = {
+export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-01': {
     id: 'fl-01',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
@@ -20,7 +20,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-02': {
     id: 'fl-02',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
@@ -34,7 +34,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-03': {
     id: 'fl-03',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
@@ -48,7 +48,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-04': {
     id: 'fl-04',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
@@ -62,7 +62,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-05': {
     id: 'fl-05',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
@@ -75,7 +75,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-06': {
     id: 'fl-06',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'System',
@@ -86,7 +86,7 @@ export const firLetterData: Record<string, IScenarioMail> = {
   },
   'fl-fail': {
     id: 'fl-fail',
-    kind: 'scenario',
+    kind: 'firstletter',
     chapter: 'first-letter',
     threadId: 'fl-main',
     sender: 'Postman',
