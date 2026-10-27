@@ -1,71 +1,73 @@
-'use client'
+"use client";
 
-import { MailListToolbarMenu } from '@/src/component/mail/mailListToolbar'
-import { BottomMenu } from '@/src/component/mail/bottombar';
-import { useRouter } from 'next/navigation';
-import { usePagination } from '@/src/hook/usePagination';
-import { Pagination } from '@/src/component/common/pagination';
-import { useMounted } from '@/src/hook/useMounted';
-import { useEndingData } from '@/src/store/ending.store';
-import { scenarioListData } from '@/src/data/menu/scenario.data';
+import { OPEN_SCENARIO_IDS, scenarioListData } from "@/src/data/menu/scenario.data";
+import { useParams, useRouter } from "next/navigation";
 
-const PAGE_SIZE = 15;
-
-export default function ScenarioListPage() {
+export default function ScenarioPage() {
     const router = useRouter();
-    const allScenarios = Object.values(scenarioListData).filter((m) => m.ending);
-    const { unlockedEndings } = useEndingData();
-    const mounted = useMounted();
-    const { page, setPage, pageItems } = usePagination(allScenarios, PAGE_SIZE);
+    const { id } = useParams<{ id: string }>();
+    const scenario = scenarioListData[id];
+
+    const handleBack = () => router.push("/mail/starred");
+
+    if (!scenario) {
+        return (
+            <div className="flex flex-col items-start gap-4 p-6">
+                <span>존재하지 않는 시나리오입니다.</span>
+                <button
+                    onClick={handleBack}
+                    className="text-sm underline"
+                >
+                    목록으로
+                </button>
+            </div>
+        );
+    }
+
+    const isOpen = OPEN_SCENARIO_IDS.includes(scenario.id);
+
+    const handleStart = () => {
+        // TODO: registry.ts의 기존 시작 방식으로 교체 (첫 메일로 이동 등)
+    };
 
     return (
-        <main className="h-full w-full flex-col" style={{ backgroundColor: 'var(--color-background)', color: 'var(--color-text)' }}>
-            <div className="min-w-0 w-full flex-1 p-2 sm:p-4">
-                <div className="overflow-hidden rounded-2xl border shadow-sm" style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}>
-                    <MailListToolbarMenu />
+        <div className="mx-auto flex max-w-2xl flex-col gap-6 p-6">
+            <button
+                onClick={handleBack}
+                className="w-fit text-sm opacity-70 hover:opacity-100"
+            >
+                ← 게임 목록
+            </button>
 
-                    {pageItems.map((mail) => {
-                        const unlocked = mounted && unlockedEndings.includes(mail.ending!.key);
-
-                        return (
-                            <button
-                                key={mail.id}
-                                disabled={!unlocked}
-                                onClick={() => router.push(`/mail/detail/${mail.id}`)}
-                                className="flex h-8 w-full items-center border-b px-2 text-left text-xs transition hover:opacity-80 disabled:cursor-default disabled:hover:opacity-100 sm:h-10 sm:px-3 sm:text-sm md:h-12 md:px-4"
-                                style={{
-                                    borderColor: 'var(--color-border)',
-                                    color: unlocked ? 'var(--color-text)' : 'var(--color-text-muted)',
-                                }}
-                            >
-                                <span className="hidden w-10 shrink-0 text-center sm:block text-lg" style={{ color: 'var(--color-text-muted)' }}>□</span>
-                                <span className="hidden w-10 shrink-0 text-center sm:block" style={{ color: 'var(--color-text-muted)' }}>☆</span>
-
-                                <span className="w-24 shrink-0 truncate text-sm">
-                                    {unlocked ? mail.sender : '???'}
-                                </span>
-
-                                <span className="min-w-0 flex-1 truncate text-sm">
-                                    {unlocked ? mail.ending!.title : '아직 발견하지 못한 엔딩'}
-                                    {unlocked && (
-                                        <span className="hidden font-normal sm:inline" style={{ color: 'var(--color-text-muted)' }}>
-                                            {' — '}{mail.preview}
-                                        </span>
-                                    )}
-                                </span>
-
-                                <span className="ml-3 shrink-0 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                                    {unlocked ? mail.time : ''}
-                                </span>
-                            </button>
-                        );
-                    })}
-
-                    <Pagination page={page} totalItems={allScenarios.length} pageSize={PAGE_SIZE} onPageChange={setPage} />
+            <div className="flex flex-col gap-2 border-b pb-4">
+                <span className="text-xs opacity-60">
+                    From. 우체부
+                </span>
+                <div className="text-2xl font-bold">
+                    {scenario.subject}
                 </div>
             </div>
 
-            <BottomMenu />
-        </main>
+            <div className="whitespace-pre-line leading-relaxed">
+                {scenario.body}
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+                {isOpen ? (
+                    <button
+                        onClick={handleStart}
+                        className="rounded-md bg-black px-5 py-2
+                            text-white hover:opacity-80"
+                    >
+                        시작하기
+                    </button>
+                ) : (
+                    <span className="rounded-md border px-5 py-2
+                        text-sm opacity-60">
+                        준비 중
+                    </span>
+                )}
+            </div>
+        </div>
     );
 }

@@ -15,7 +15,7 @@ export function MailThread({ mail }: { mail: IMail }) {
     const { unlockEnding } = useEndingAction()
     const [replyOpen, setReplyOpen] = useState(false);
 
-    const replies = mail.kind === 'scenario' ? mail.replies : undefined;
+    const replies = mail.kind === 'firstletter' ? mail.replies : undefined;
     const handleReply = (opt: IReplyOption) => {
         // 다음 메일이 엔딩이면 도달하는 즉시 해금 (reply 안에서 reset이 일어나도 안전하도록 먼저)
         const next = opt.nextMailId ? firLetterData[opt.nextMailId] : undefined;

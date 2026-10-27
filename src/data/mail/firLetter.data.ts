@@ -6,8 +6,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-01': {
     id: 'fl-01',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: '⏁⊑⟒ ⎐⟒⟟⌰ ⌇⟒⏁ ⎎⍀⟒⟒',
     preview: '⟡ ⍙⏃⌇⊑ ⟟⌇ ⌿⍜⌇⏁ ⌰⟟⎐⟒ ⌇⏁⏃⍀ ⍜⋏...',
@@ -21,8 +19,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-02': {
     id: 'fl-02',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: 'The Veil Set Free',
     preview: '번역 대상자를 잘못 설정한 것 같습니다...',
@@ -35,8 +31,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-03': {
     id: 'fl-03',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: 'The Veil Set Free',
     preview: '장거리 연애 중인 두 사람의 편지를...',
@@ -49,8 +43,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-04': {
     id: 'fl-04',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: 'The Veil Set Free',
     preview: '혹시 제가 사람을 잘못 찾은 걸까요?',
@@ -63,8 +55,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-05': {
     id: 'fl-05',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: 'The Veil Set Free',
     preview: '앞으로 잘 부탁드립니다!',
@@ -76,8 +66,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-06': {
     id: 'fl-06',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'System',
     subject: 'The Veil Set Free',
     preview: '특별 번역기가 활성화되었습니다.',
@@ -87,8 +75,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-fail': {
     id: 'fl-fail',
     kind: 'firstletter',
-    chapter: 'first-letter',
-    threadId: 'fl-main',
     sender: 'Postman',
     subject: '⏁⊑⟒ ⎐⟒⟟⌰ ⌇⟒⏁ ⎎⍀⟒⟒', // 깨진 원제 유지
     preview: '죄송합니다. 메일을 잘못 보낸 것 같습니다.',
