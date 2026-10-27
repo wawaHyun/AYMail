@@ -1,13 +1,80 @@
-import { ISohuraEventChoice, ISohuraMail } from "@/src/model/sohura.model";
+import { ISohuraScenario } from "@/src/model/sohura.model";
+import { SohuraStatKey } from "@/src/model/sohura.model";
+import { ISohuraMail } from "@/src/model/sohura.model";
+
+const getStatRange = (stats: Record<SohuraStatKey, number>) => {
+  const v = Object.values(stats);
+  return { min: Math.min(...v), max: Math.max(...v) };
+};
+
+export const sohuraScenario: ISohuraScenario = {
+  kind: 'sohura',
+  statKeys: ['literal', 'kind', 'bold'],
+  statPoint: 2,
+  firstMailId: 'sh-01',
+  poolIds: [
+    'sh-02', 'sh-03', 'sh-04', 'sh-05', 'sh-06', 'sh-07',
+    'sh-08', 'sh-09', 'sh-10', 'sh-11', 'sh-12', 'sh-13',
+  ],
+  drawCount: 9,
+  endingRules: [
+    { mailId: 'sh-end-lost', when: ({ skipCount }) => skipCount >= 2 },
+    {
+      mailId: 'sh-s1',
+      when: ({ stats }) => {
+        const { min, max } = getStatRange(stats);
+        return min >= 5 && max - min <= 2;
+      },
+    },
+    { mailId: 'sh-s2', when: ({ stats }) => stats.bold >= 12 },
+    { mailId: 'sh-end-forger', when: ({ stats }) => stats.bold >= 10 && stats.literal <= 4 },
+    { mailId: 'sh-end-match', when: ({ stats }) => stats.bold >= 8 && stats.kind >= 6 },
+    { mailId: 'sh-end-heart', when: ({ stats }) => stats.literal >= 10 },
+    { mailId: 'sh-end-sweet', when: ({ stats }) => stats.kind >= 10 && stats.literal <= 5 },
+    { mailId: 'sh-end-fired', when: () => true }, //기본엔딩 (번역가해고)
+  ],
+};
 
 const SOHURA_SKIP_CHOICE: ISohuraEventChoice = { label: '답장하지 않는다', skip: true };
+
+const getStatRange = (stats: Record<SohuraStatKey, number>) => {
+  const v = Object.values(stats);
+  return { min: Math.min(...v), max: Math.max(...v) };
+};
+
+export const sohuraScenario: ISohuraScenario = {
+  kind: 'sohura',
+  statKeys: ['literal', 'kind', 'bold'],
+  statPoint: 2,
+  firstMailId: 'sh-01',
+  poolIds: [
+    'sh-02', 'sh-03', 'sh-04', 'sh-05', 'sh-06', 'sh-07',
+    'sh-08', 'sh-09', 'sh-10', 'sh-11', 'sh-12', 'sh-13',
+  ],
+  drawCount: 9,
+  endingRules: [
+    { mailId: 'sh-end-lost', when: ({ skipCount }) => skipCount >= 2 },
+    {
+      mailId: 'sh-s1',
+      when: ({ stats }) => {
+        const { min, max } = getStatRange(stats);
+        return min >= 5 && max - min <= 2;
+      },
+    },
+    { mailId: 'sh-s2', when: ({ stats }) => stats.bold >= 12 },
+    { mailId: 'sh-end-forger', when: ({ stats }) => stats.bold >= 10 && stats.literal <= 4 },
+    { mailId: 'sh-end-match', when: ({ stats }) => stats.bold >= 8 && stats.kind >= 6 },
+    { mailId: 'sh-end-heart', when: ({ stats }) => stats.literal >= 10 },
+    { mailId: 'sh-end-sweet', when: ({ stats }) => stats.kind >= 10 && stats.literal <= 5 },
+    { mailId: 'sh-end-fired', when: () => true },
+  ],
+};
 
 export const sohuraData: Record<string, ISohuraMail> = {
   'sh-01': {
     id: 'sh-01',
     kind: 'sohura',
     form: 'postman',
-    first: true,
     sender: 'Postman',
     subject: '[의뢰] 베일 너머의 편지 (자동 전달 규칙 설정 완료)',
     preview: '앞으로 진행 방식을 간단히 말씀드릴게요.',
@@ -388,5 +455,200 @@ export const sohuraData: Record<string, ISohuraMail> = {
       { label: '솔직히 가끔은 제가 편지를 쓰는 것 같아요.', stat: 'bold' },
       SOHURA_SKIP_CHOICE,
     ],
+  },
+  // ───── 특수 이벤트 루트: endingRules로 진입, 선택지는 nextMailId 고정 ─────
+  'sh-even-01': {
+    id: 'sh-even-01',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'System',
+    subject: '자동번역 설정 변경 안내',
+    preview: '번역 보조가 더 이상 필요하지 않을 수 있다는 판정을 내렸습니다.',
+    body: [
+      '번역기 사용자님께,',
+      '',
+      '특별 번역기가 두 사용자의 문자 패턴을 학습한 결과,',
+      '번역 보조가 더 이상 필요하지 않을 수 있다는 판정을 내렸습니다.',
+      '',
+      '원문 보기 상태: □□□ □□□□ □□□□ □□□.',
+      '',
+      '…이제 이 글자들이 읽히시나요?',
+      '',
+      '번역기를 계속 사용하시겠습니까?',
+    ].join('\n'),
+    replies: [
+      { label: '번역기를 끈다', nextMailId: 'sh-end-veil' },
+      { label: '번역기를 켜 둔다', nextMailId: 'sh-end-fired' },
+    ],
+  },
+  'sh-bold-01': {
+    id: 'sh-bold-01',
+    kind: 'sohura',
+    form: 'postman',
+    sender: '바우르, 이셀',
+    subject: '번역가님께 부탁이 있습니다',
+    preview: '원문과 번역문을 나란히 볼 수 있을까요?',
+    body: [
+      '번역가님께,',
+      '',
+      '바우르입니다. 이셀입니다. 저희 둘이 같이 씁니다.',
+      '',
+      '요즘 번역에서 이상한 점이 있어서요.',
+      '원문과 번역문을 나란히 볼 수 있을까요?',
+      '아무 문제 없다면 보여 주셔도 괜찮겠죠?',
+    ].join('\n'),
+    replies: [
+      { label: '원문과 번역을 모두 공개하고 사과한다', nextMailId: 'sh-end-forgiven' },
+      { label: '필요 없다고 둘러댄다', nextMailId: 'sh-end-forger' },
+    ],
+  },
+
+  // ───── 엔딩: 선택지 없음, ending.key는 메일 id와 같게 ─────
+  'sh-end-lost': {
+    id: 'sh-end-lost',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'Postman',
+    subject: '혹시 그 편지들 받으셨어요?',
+    preview: '우편함이 비어 있어요.',
+    body: [
+      '번역가님께,',
+      '',
+      '혹시 그 편지들 받으셨어요?',
+      '우편함이 비어 있어요. 요 며칠 두 분 앞으로 온 편지가 한 통도 없어요.',
+      '두 분 연락이 끊긴 것 같아요…',
+      '',
+      'Postman 드림.',
+      '',
+      '추신. 잃어버린 편지는 우주 어딘가에서 아직 날아가고 있을지도 몰라요.',
+    ].join('\n'),
+    ending: { key: 'sh-end-lost', title: '편지 분실' },
+  },
+  'sh-end-forger': {
+    id: 'sh-end-forger',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'Postman',
+    subject: '못 본 걸로 할게요',
+    preview: '이제 두 분이 번역기를 의심해요.',
+    body: [
+      '번역가님께,',
+      '',
+      '저는… 못 본 걸로 할게요.',
+      '그런데 이제 두 분이 번역기를 의심해요.',
+      '원문과 번역이 다르다는 걸 눈치채신 것 같아요.',
+      '',
+      'Postman 드림.',
+      '',
+      '추신. 저는 정말 아무것도 못 봤어요.',
+    ].join('\n'),
+    ending: { key: 'sh-end-forger', title: '편지 위조범' },
+  },
+  'sh-end-match': {
+    id: 'sh-end-match',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'Postman',
+    subject: '두 분이 중간 행성에서 만났어요!',
+    preview: '수수료 두 배로 받아도 되겠죠?',
+    body: [
+      '번역가님께,',
+      '',
+      '큰 소식이에요! 두 분이 중간 행성에서 만났어요!',
+      '번역가님이 잡아 주신 약속 덕분이에요.',
+      '그래서 말인데, 수수료 두 배로 받아도 되겠죠?',
+      '',
+      'Postman 드림.',
+      '',
+      '추신. 만난 자리에서 푸딩을 나눠 먹었대요.',
+    ].join('\n'),
+    ending: { key: 'sh-end-match', title: '중매쟁이' },
+  },
+  'sh-end-heart': {
+    id: 'sh-end-heart',
+    kind: 'sohura',
+    form: 'letter',
+    sender: '이셀 <하르카>',
+    subject: '이제야 알았어요',
+    preview: '당신의 “끝.”이 사실은 “끝없이 잘 지낸다”였다는 걸 알았어요.',
+    body: '',
+    letters: [
+      {
+        original: '□□□ “□.”□ □□□ “□□□□ □□ □□□□”□□□□ □ □□□□ □□□□□.',
+        translated: '당신의 “끝.”이 사실은 “끝없이 잘 지낸다”였다는 걸 이제야 알았어요.',
+        reliability: '높음',
+      },
+    ],
+    ending: { key: 'sh-end-heart', title: '진심이 닿다' },
+  },
+  'sh-end-sweet': {
+    id: 'sh-end-sweet',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'System',
+    subject: '두 사람은 행복하다',
+    preview: '하지만 번역가만 아는 것이 있다.',
+    body: [
+      '두 사람은 행복하다.',
+      '편지마다 다정한 말이 가득하고, 서로의 안부를 걱정한다.',
+      '',
+      '하지만 서로가 사랑하는 것이 “나의 문장”이라는 걸,',
+      '번역가만 안다.',
+    ].join('\n'),
+    ending: { key: 'sh-end-sweet', title: '달콤한 거짓말' },
+  },
+  'sh-end-fired': {
+    id: 'sh-end-fired',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'Postman',
+    subject: '고마웠어요',
+    preview: '번역이 필요 없게 됐어요.',
+    body: [
+      '번역가님께,',
+      '',
+      '두 분이 서로의 언어를 배우기 시작했어요.',
+      '번역이 필요 없게 됐어요.',
+      '고마웠어요.',
+      '',
+      'Postman 드림.',
+      '',
+      '추신. 간식은 언제든 환영이에요.',
+    ].join('\n'),
+    ending: { key: 'sh-end-fired', title: '번역가 해고' },
+  },
+  'sh-end-veil': {
+    id: 'sh-end-veil',
+    kind: 'sohura',
+    form: 'postman',
+    sender: 'System',
+    subject: 'The Veil Set Free',
+    preview: '번역기를 껐습니다.',
+    body: [
+      '번역기를 껐습니다.',
+      '',
+      '□ 사이로 글자가 읽힌다.',
+      '두 사람의 말이 그대로 닿는다.',
+      '',
+      '베일이 걷혔다.',
+    ].join('\n'),
+    ending: { key: 'sh-end-veil', title: '베일이 걷히다' },
+  },
+  'sh-end-forgiven': {
+    id: 'sh-end-forgiven',
+    kind: 'sohura',
+    form: 'postman',
+    sender: '바우르, 이셀',
+    subject: '용서합니다',
+    preview: '앞으로는 원문 그대로 번역해 주세요.',
+    body: [
+      '번역가님께,',
+      '',
+      '바우르입니다. 이셀입니다.',
+      '솔직하게 말해 주셔서 고마워요. 조금 놀랐지만, 웃음이 났어요.',
+      '용서합니다. 대신 약속 하나만 해 주세요.',
+      '앞으로는 원문 그대로 번역해 주세요.',
+    ].join('\n'),
+    ending: { key: 'sh-end-forgiven', title: '용서받은 위조범' },
   },
 };

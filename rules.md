@@ -15,13 +15,7 @@
 - 파일은 전부 camelCase (`mailThread.tsx`, `firLetter.data.ts`)
 - 시나리오 데이터는 `<이름>.data.ts`
 - Next.js 예약 이름(`page.tsx`, `layout.tsx`)과 라우트 폴더(`(mail)`, `[id]`)는 예외
-  kind: 'work' // 업무메일 work-01
-  | 'scenario'  //시나리오 목록 sce-01
-  | 'firstletter' //튜토리얼. fl-01
-  | 'sohura' // 장거리 연애 번역 sh-01
-  | 'dontlate' //idle. 우편배달하고 편지모으기 dl-01
-  | 'survivaluniverse' //서바이벌 웹게임 su-01
-- data에서 시나리오 kind만 전부 소문자.
+- model파일들에 적힌 주석내용을 최우선한다
 
 ## 시나리오 데이터
 - 컴포넌트와 페이지는 특정 시나리오(`firstLetter` 등)를 직접 import하지 않고 `registry.ts`만 통해 접근한다
