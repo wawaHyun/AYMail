@@ -1,6 +1,6 @@
 
-import { TopbarMenu } from '@/src/component/mail/topbar';
-import { SidebarMenu } from '@/src/component/mail/sidebar';
+import { TopbarMenu } from '@/src/component/common/topbar';
+import { SidebarMenu } from '@/src/component/common/sidebar';
 
 export default function MailLayout({ children }: {children: React.ReactNode}) {
   return (

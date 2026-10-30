@@ -30,6 +30,7 @@ export interface IMail {
   | 'sohura'             // 장거리 연애 번역 sh-01
   | 'dontlate'           // idle. 우편배달하고 편지모으기 dl-01
   | 'survivaluniverse'   // 서바이벌 웹게임 su-01
+  | 'cookieClicker'   // simple cookie cliker 게임 cc-01
   ;
   replies?: IReplyOption[];  // 없으면 답장 불가 (엔딩 메일 등)
   ending?: IMailEnding;      // 엔딩 메일일 때만

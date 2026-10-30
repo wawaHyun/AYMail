@@ -9,7 +9,7 @@ export const scenarioListData: Record<string, IScenarioMail> = {
         id: "sce-01",
         kind: "firstletter",
         sender: "postman",
-        entry :'/mail', //fl-01 메일 다시 받기
+        entry: '/mail', //fl-01 메일 다시 받기
         subject: "⟡ ⍙⏃⌇⊑ ⟟⌇ ⌿⍜⌇⏁",
         preview: "알 수 없는 기호로 쓰인 편지가 도착했다...",
         body: "알 수 없는 기호로 쓰인 편지가 도착했다.\n\n"
@@ -22,7 +22,7 @@ export const scenarioListData: Record<string, IScenarioMail> = {
         id: "sce-02",
         kind: "sohura",
         sender: "postman",
-        entry :'/mail', //sh-01 메일 다시 받기
+        entry: '/mail', //sh-01 메일 다시 받기
         subject: "장거리 연애를 도와줘!",
         preview: "장거리 연애도 힘들어 죽겠는데 번역기까지 고장 나다니!",
         body: "장거리 연애 중인 바우르와 이셀.\n"
@@ -40,7 +40,7 @@ export const scenarioListData: Record<string, IScenarioMail> = {
         id: "sce-03",
         kind: "dontlate",
         sender: "postman",
-        entry :'/mail/dontLate',
+        entry: '/mail/dontLate',
         subject: "일해라 우체부",
         preview: "바쁘다 바빠 현대생활",
         body: "늑장 부리는 우체부를 재촉하여 쉼 없이 편지를 배달하게 하고,\n"
@@ -52,13 +52,26 @@ export const scenarioListData: Record<string, IScenarioMail> = {
         id: "sce-04",
         kind: "survivaluniverse",
         sender: "postman",
-        entry :'/mail/surUni',
+        entry: '/mail/surUni',
         subject: "이 거지 같은 우주 한복판에 버려지다니!",
         preview: "편지 배달 중에 우주선이 난파돼 우주 미아가 되었다.",
         body: "이럴 수가!\n\n"
             + "언젠가 이런 일이 생길 거라 생각했지만 진짜 일어날 줄은 몰랐다.\n"
             + "편지 배달 중에 우주선 난파로 우주 미아가 된 우체부.\n"
             + "이것저것 하나씩 모아 중앙우주우체국으로 돌아가자.",
+        time: "",
+    },
+    // simple cookieclicker
+    "sce-05": {
+        id: "sce-05",
+        kind: "cookieClicker",
+        sender: "postman",
+        entry: '/game/cookie',
+        subject: "내가 만든 쿠키~ Come and take a lookie~ 우리 집에만 있지~ ",
+        preview: "뉴진스 복귀해 복귀해",
+        body: "누구나 아는 그 게임\n\n"
+            + "설명이 필요할까?\n\n"
+            + "클릭, 그리고 클릭.\n",
         time: "",
     },
 };

@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { IMail, IReplyOption } from "@/src/model/mail.model";
 import { MailDetailToolbar } from "./mailDetailToolbar";
 import { MailButton } from "@/src/ui/button";
-import { MyIcon } from "./myIcon";
+import { MyIcon } from "../common/myIcon";
 import { firLetterData } from "@/src/data/mail/firLetter.data";
 import { useEndingAction } from "@/src/store/ending.store";
 import { useMailAction, useMailData } from "@/src/store/mail.store";

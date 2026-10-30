@@ -70,7 +70,7 @@ export const firLetterData: Record<string, IFirstletterMail> = {
     subject: 'The Veil Set Free',
     preview: '특별 번역기가 활성화되었습니다.',
     body: '특별 번역기가 활성화되었습니다.\n새로운 차원의 메일을 기다려 보세요.',
-    ending: { key: 'fl-success', title: '다른 차원의 메일', kind: 'good' },
+    ending: { key: 'fl-success', title: '다른 차원의 메일'},
   },
   'fl-fail': {
     id: 'fl-fail',
@@ -79,6 +79,6 @@ export const firLetterData: Record<string, IFirstletterMail> = {
     subject: '⏁⊑⟒ ⎐⟒⟟⌰ ⌇⟒⏁ ⎎⍀⟒⟒', // 깨진 원제 유지
     preview: '죄송합니다. 메일을 잘못 보낸 것 같습니다.',
     body: '죄송합니다. 메일을 잘못 보낸 것 같습니다.\n수신자를 다시 확인하겠습니다.\n번거롭게 해드려 죄송합니다.',
-    ending: { key: 'fl-fail', title: '일이나 해야겠다', kind: 'bad' },
+    ending: { key: 'fl-fail', title: '일이나 해야겠다' },
   },
 };

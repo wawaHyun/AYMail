@@ -1,6 +1,6 @@
 'use client'
 
-import { BottomMenu } from '@/src/component/mail/bottombar';
+import { BottomMenu } from '@/src/component/common/bottombar';
 import { useRouter } from 'next/navigation';
 
 import { usePagination } from '@/src/hook/usePagination';

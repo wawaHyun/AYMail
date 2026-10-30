@@ -1,7 +1,7 @@
 'use client'
 
 import { MailListToolbarMenu } from '@/src/component/mail/mailListToolbar'
-import { BottomMenu } from '@/src/component/mail/bottombar';
+import { BottomMenu } from '@/src/component/common/bottombar';
 import { useRouter } from 'next/navigation';
 import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
