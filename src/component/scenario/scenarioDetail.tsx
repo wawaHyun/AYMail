@@ -1,5 +1,5 @@
 
-import { scenarioListData } from '@/src/data/menu/scenario.data';
+import { scenarioListData } from '@/src/data/scenarios/scenario.data';
 import { ScenarioThread } from './scenarioThread';
 
 export async function ScenarioDetail({ params }: { params: Promise<{ id: string }> }) {

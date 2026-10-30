@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 
 import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
-import { mailRegistry } from '@/src/data/mail/registry';
-import { workMails } from '@/src/data/mail/workMails';
+import { mailRegistry } from '@/src/data/menu/registry';
+import { workMails } from '@/src/data/scenarios/workMails';
 import type { IMail } from '@/src/model/mail.model';
 import { useMailData } from '@/src/store/mail.store';
 import { MailListToolbarMenu } from '@/src/component/mail/mailListToolbar';

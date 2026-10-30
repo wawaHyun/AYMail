@@ -30,7 +30,7 @@ export interface IMail {
   | 'sohura'             // 장거리 연애 번역 sh-01
   | 'dontlate'           // idle. 우편배달하고 편지모으기 dl-01
   | 'survivaluniverse'   // 서바이벌 웹게임 su-01
-  | 'cookieClicker'   // simple cookie cliker 게임 cc-01
+  | 'cookieclicker'      // 쿠키 클리커 게임 cc-01
   ;
   replies?: IReplyOption[];  // 없으면 답장 불가 (엔딩 메일 등)
   ending?: IMailEnding;      // 엔딩 메일일 때만
@@ -51,7 +51,7 @@ export interface ILetter {
 
 // 스탯 선택지 시나리오 공용 폼. 시나리오는 S에 자기 스탯 키만 넣는다 (예: ISohuraMail)
 export interface IReplyMail<S extends string = string> extends IMail {
-  form: 'letter' | 'postman';           // 항상 첫 번째로 오는 이벤트
+  form: 'letter' | 'postman';           // letter: 연인의 편지, postman: Postman의 업무 메일
   letters?: ILetter[];
   replies?: IReplyOption<S>[];
 }

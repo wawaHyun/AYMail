@@ -64,7 +64,7 @@ export const scenarioListData: Record<string, IScenarioMail> = {
     // simple cookieclicker
     "sce-05": {
         id: "sce-05",
-        kind: "cookieClicker",
+        kind: "cookieclicker",
         sender: "postman",
         entry: '/game/cookie',
         subject: "내가 만든 쿠키~ Come and take a lookie~ 우리 집에만 있지~ ",

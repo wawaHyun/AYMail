@@ -2,7 +2,7 @@
 
 import { BottomMenu } from "@/src/component/common/bottombar";
 import { MailListToolbarMenu } from "@/src/component/mail/mailListToolbar";
-import { scenarioListData } from "@/src/data/menu/scenario.data";
+import { scenarioListData } from "@/src/data/scenarios/scenario.data";
 import { useRouter } from "next/navigation";
 
 export default function ScenarioPage() {

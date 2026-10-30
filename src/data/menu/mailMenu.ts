@@ -1,4 +1,4 @@
-import { IMenu } from "@/src/model/common.model";
+import { IMenu } from "@/src/model/menu.model";
 
 export const mailMenuData:IMenu[] = [
   {id:0,icon:'▣',name:'Inbox',url:'/mail',script:'받은 편지함',state:true , unread:2},

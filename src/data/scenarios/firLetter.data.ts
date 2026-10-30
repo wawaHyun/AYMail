@@ -1,6 +1,6 @@
 import { IFirstletterMail } from "@/src/model/mail.model";
 
-// 같은 시나리오(threadId)는 subject를 동일하게 쓰고, 'Re:'는 화면에서 계산해서 붙인다.
+// 같은 시나리오(kind)는 subject를 동일하게 쓰고, 'Re:'는 화면에서 계산해서 붙인다.
 // time은 연출용 고정값(fl-01의 99:99)만 두고, 나머지는 생략하면 도착 시각(receivedAt)을 쓴다.
 export const firLetterData: Record<string, IFirstletterMail> = {
   'fl-01': {

@@ -1,4 +1,4 @@
-import { mailRegistry } from '@/src/data/mail/registry';
+import { mailRegistry } from '@/src/data/menu/registry';
 import { MailThread } from './mailThread';
 
 export async function MailDetail({ params }: { params: Promise<{ id: string }> }) {

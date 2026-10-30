@@ -2,7 +2,7 @@
 
 import { use, useEffect } from 'react';
 import { useEndingAction } from '@/src/store/ending.store';
-import { firLetterData } from '@/src/data/mail/firLetter.data';
+import { firLetterData } from '@/src/data/scenarios/firLetter.data';
 
 export function EndingUnlocker({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);

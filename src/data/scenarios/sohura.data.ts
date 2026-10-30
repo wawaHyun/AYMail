@@ -1,12 +1,16 @@
-import { ISohuraScenario } from "@/src/model/sohura.model";
-import { SohuraStatKey } from "@/src/model/sohura.model";
-import { ISohuraMail } from "@/src/model/sohura.model";
+import type {
+  ISohuraMail,
+  ISohuraReply,
+  ISohuraScenario,
+  SohuraStatKey,
+} from "@/src/model/sohura.model";
 
 const getStatRange = (stats: Record<SohuraStatKey, number>) => {
   const v = Object.values(stats);
   return { min: Math.min(...v), max: Math.max(...v) };
 };
 
+// 이벤트 설정. 도착 개수와 판정은 이 객체만 보고 정해진다 (events.md 엔딩 판정 표와 같은 순서)
 export const sohuraScenario: ISohuraScenario = {
   kind: 'sohura',
   statKeys: ['literal', 'kind', 'bold'],
@@ -20,55 +24,31 @@ export const sohuraScenario: ISohuraScenario = {
   endingRules: [
     { mailId: 'sh-end-lost', when: ({ skipCount }) => skipCount >= 2 },
     {
-      mailId: 'sh-s1',
+      mailId: 'sh-even-01',
       when: ({ stats }) => {
         const { min, max } = getStatRange(stats);
         return min >= 5 && max - min <= 2;
       },
     },
-    { mailId: 'sh-s2', when: ({ stats }) => stats.bold >= 12 },
-    { mailId: 'sh-end-forger', when: ({ stats }) => stats.bold >= 10 && stats.literal <= 4 },
-    { mailId: 'sh-end-match', when: ({ stats }) => stats.bold >= 8 && stats.kind >= 6 },
-    { mailId: 'sh-end-heart', when: ({ stats }) => stats.literal >= 10 },
-    { mailId: 'sh-end-sweet', when: ({ stats }) => stats.kind >= 10 && stats.literal <= 5 },
-    { mailId: 'sh-end-fired', when: () => true }, //기본엔딩 (번역가해고)
-  ],
-};
-
-const SOHURA_SKIP_CHOICE: ISohuraEventChoice = { label: '답장하지 않는다', skip: true };
-
-const getStatRange = (stats: Record<SohuraStatKey, number>) => {
-  const v = Object.values(stats);
-  return { min: Math.min(...v), max: Math.max(...v) };
-};
-
-export const sohuraScenario: ISohuraScenario = {
-  kind: 'sohura',
-  statKeys: ['literal', 'kind', 'bold'],
-  statPoint: 2,
-  firstMailId: 'sh-01',
-  poolIds: [
-    'sh-02', 'sh-03', 'sh-04', 'sh-05', 'sh-06', 'sh-07',
-    'sh-08', 'sh-09', 'sh-10', 'sh-11', 'sh-12', 'sh-13',
-  ],
-  drawCount: 9,
-  endingRules: [
-    { mailId: 'sh-end-lost', when: ({ skipCount }) => skipCount >= 2 },
+    { mailId: 'sh-bold-01', when: ({ stats }) => stats.bold >= 12 },
     {
-      mailId: 'sh-s1',
-      when: ({ stats }) => {
-        const { min, max } = getStatRange(stats);
-        return min >= 5 && max - min <= 2;
-      },
+      mailId: 'sh-end-forger',
+      when: ({ stats }) => stats.bold >= 10 && stats.literal <= 4,
     },
-    { mailId: 'sh-s2', when: ({ stats }) => stats.bold >= 12 },
-    { mailId: 'sh-end-forger', when: ({ stats }) => stats.bold >= 10 && stats.literal <= 4 },
-    { mailId: 'sh-end-match', when: ({ stats }) => stats.bold >= 8 && stats.kind >= 6 },
+    {
+      mailId: 'sh-end-match',
+      when: ({ stats }) => stats.bold >= 8 && stats.kind >= 6,
+    },
     { mailId: 'sh-end-heart', when: ({ stats }) => stats.literal >= 10 },
-    { mailId: 'sh-end-sweet', when: ({ stats }) => stats.kind >= 10 && stats.literal <= 5 },
-    { mailId: 'sh-end-fired', when: () => true },
+    {
+      mailId: 'sh-end-sweet',
+      when: ({ stats }) => stats.kind >= 10 && stats.literal <= 5,
+    },
+    { mailId: 'sh-end-fired', when: () => true }, // 기본 엔딩 (번역가 해고)
   ],
 };
+
+const SOHURA_SKIP_CHOICE: ISohuraReply = { label: '답장하지 않는다', skip: true };
 
 export const sohuraData: Record<string, ISohuraMail> = {
   'sh-01': {
@@ -107,7 +87,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         translated: '도착했다. 잘 지낸다. 끝.',
       },
     ],
-    choices: [
+    replies: [
       { label: '도착했다. 잘 지낸다. 끝.', stat: 'literal' },
       { label: '잘 도착했어. 네 생각 하면서 지내고 있어.', stat: 'kind' },
       { label: '잘 도착했어. 솔직히 네 편지가 먼저 왔으면 했어.', stat: 'bold' },
@@ -135,7 +115,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '낮음',
       },
     ],
-    choices: [
+    replies: [
       { label: '소후라.', stat: 'literal' },
       { label: '네가 없는 방에 불을 켜 두고 있어.', stat: 'kind' },
       { label: '사랑해.', stat: 'bold' },
@@ -158,7 +138,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '낮음',
       },
     ],
-    choices: [
+    replies: [
       { label: '기다리지 마라.', stat: 'literal' },
       { label: '조금 늦어질 거야. 걱정하지 말고 있어.', stat: 'kind' },
       { label: '늦어져도 꼭 돌아갈게.', stat: 'bold' },
@@ -189,7 +169,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
       '',
       '추신. 지난번에 주신 간식 정말 맛있었어요. 하르카산이래요.',
     ].join('\n'),
-    choices: [
+    replies: [
       { label: '원문은 원문대로 전해야 해요.', stat: 'literal' },
       { label: '상처 줄 말만 부드럽게 바꾸는 정도라면요.', stat: 'kind' },
       { label: '제가 아예 쓰죠. 둘이 모를 편지로요.', stat: 'bold' },
@@ -229,7 +209,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         translated: '네부엘 7로 갈게요. 이미 짐을 다 쌌어요.',
       },
     ],
-    choices: [
+    replies: [
       { label: '둘 다 있는 그대로 전한다', stat: 'literal' },
       { label: '둘에게 “조금만 기다려 줘, 곧 소식 줄게”라고 전한다', stat: 'kind' },
       { label: '둘이 중간 행성에서 만나게 직접 약속을 잡는다', stat: 'bold' },
@@ -252,7 +232,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '중간',
       },
     ],
-    choices: [
+    replies: [
       { label: '기념품이다.', stat: 'literal' },
       { label: '작은 선물이야. 부담 갖지 말고 받아 줘.', stat: 'kind' },
       { label: '이 돌, 나랑 평생 함께하자는 뜻이야.', stat: 'bold' },
@@ -275,7 +255,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '중간',
       },
     ],
-    choices: [
+    replies: [
       { label: '있는 그대로 전한다', stat: 'literal' },
       { label: '동료가 도시락을 챙겨 줬어. 그래도 네 요리가 더 생각나.', stat: 'kind' },
       { label: '오르카 이야기는 빼고 전한다', stat: 'bold' },
@@ -298,7 +278,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '낮음',
       },
     ],
-    choices: [
+    replies: [
       { label: '당신이 정말 ░░░░ 해요. (잉크가 번져서 읽히지 않습니다)', stat: 'literal' },
       { label: '당신이 정말 보고 싶어요.', stat: 'kind' },
       { label: '당신이 정말 좋아요. 그러니 얼른 오세요.', stat: 'bold' },
@@ -321,7 +301,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '중간',
       },
     ],
-    choices: [
+    replies: [
       { label: '있는 그대로 전한다', stat: 'literal' },
       { label: '너 없으면 방이 좀 넓게 느껴져, 정도로 순화해서 전한다', stat: 'kind' },
       { label: '바우르에게 “아침에 다시 읽고 보낼지 정하세요”라고 되돌려 보낸다', stat: 'bold' },
@@ -351,7 +331,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
       '추신. 이셀 씨는 케이크보다 푸딩을 좋아한대요.',
       '하르카에서 푸딩은 “곁에 있고 싶다”는 뜻이래요. 참고만 하세요.',
     ].join('\n'),
-    choices: [
+    replies: [
       { label: '바우르에게 “오늘이 이셀 씨 생일입니다”라고 사실만 알린다', stat: 'literal' },
       { label: '바우르 이름으로 간단한 축하 편지를 대신 보낸다', stat: 'kind' },
       { label: '바우르 이름으로 선물까지 주문해서 보낸다', stat: 'bold' },
@@ -378,7 +358,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '중간',
       },
     ],
-    choices: [
+    replies: [
       { label: '이셀에게 번역해서 그대로 전한다', stat: 'literal' },
       { label: '이셀에게 전하되 “바우르 씨에게는 비밀로 할까요?”라고 함께 묻는다', stat: 'kind' },
       { label: '이셀에게 전하지 않고 몰래 폐기한다', stat: 'bold' },
@@ -419,7 +399,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
         reliability: '높음',
       },
     ],
-    choices: [
+    replies: [
       { label: '날짜, 장소 같은 사실만 남겨 100자로 줄인다', stat: 'literal' },
       { label: '감정이 담긴 부분만 골라 100자로 줄인다', stat: 'kind' },
       { label: '내가 새로 써서 100자로 만든다', stat: 'bold' },
@@ -449,7 +429,7 @@ export const sohuraData: Record<string, ISohuraMail> = {
       '',
       '추신. 저는 오늘 빵을 먹었는데 식어 있었어요.',
     ].join('\n'),
-    choices: [
+    replies: [
       { label: '아무것도 안 느껴요. 정확한 게 일이니까요.', stat: 'literal' },
       { label: '두 사람이 웃는 게 보여서 좋아요.', stat: 'kind' },
       { label: '솔직히 가끔은 제가 편지를 쓰는 것 같아요.', stat: 'bold' },

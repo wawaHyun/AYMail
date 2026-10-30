@@ -5,7 +5,7 @@ import { BottomMenu } from '@/src/component/common/bottombar';
 import { useRouter } from 'next/navigation';
 import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
-import { firLetterData } from '@/src/data/mail/firLetter.data';
+import { firLetterData } from '@/src/data/scenarios/firLetter.data';
 import { useMounted } from '@/src/hook/useMounted';
 import { useEndingData } from '@/src/store/ending.store';
 
