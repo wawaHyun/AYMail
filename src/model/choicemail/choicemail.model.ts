@@ -11,7 +11,7 @@ export interface IReplyOption<S extends string = string> {
   replyBody?: string;          // 스레드에 남길 답장 (없으면 label을 쓴다)
   nextMailId?: string | null;  // 문자열=다음 메일 고정, null=엔딩, 없음=풀에서 뽑기
   stat?: S;                    // 오르는 스탯 (화면에 표시하지 않음, 없으면 0점)
-  skip?: boolean;              // '답장하지 않는다' (잠수 +1)
+  skip?: boolean;              // 답장하지 않는 선택 (잠수 +1). 모든 choicemail 시나리오 공용
 }
 
 export interface IMail {
@@ -32,18 +32,9 @@ export interface IMail {
   ending?: IMailEnding;      // 엔딩 메일일 때만
 }
 
-// 편지 한 통. 전달 편지가 여러 통일 수 있어서 배열로 쓴다
-export interface ILetter {
-  sender?: string;      // 전달 편지의 발신자 (postman형에서 사용)
-  original: string;     // □ ■ ░ 로 표기한 원문
-  translated: string;   // 자동번역 결과
-  note?: string;        // 번역기 메모
-  reliability?: string; // '낮음' | '중간'
-}
 // 스탯 선택지 시나리오 공용 폼. 시나리오는 S에 자기 스탯 키만 넣는다 (예: ISohuraMail)
+// 시나리오 고유 필드(예: 소후라의 번역 편지)는 <별칭>.model.ts에서 extends로 추가한다
 export interface IReplyMail<S extends string = string> extends IMail {
-  form: 'letter' | 'postman';           // letter: 연인의 편지, postman: Postman의 업무 메일
-  letters?: ILetter[];
   replies?: IReplyOption<S>[];
 }
 
@@ -58,7 +49,7 @@ export interface IMailLog {
 // 판정에 넘기는 결과. 스탯은 로그에서 계산해서 만든다
 export interface IReplyResult<S extends string = string> {
   stats: Record<S, number>;
-  skipCount: number;           // '답장하지 않는다' 횟수
+  skipCount: number;           // 잠수 횟수 (skip 선택 횟수). 모든 choicemail 시나리오 공용
 }
 
 export interface IEndingRule<S extends string = string> {
