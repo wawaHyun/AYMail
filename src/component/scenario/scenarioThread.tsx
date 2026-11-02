@@ -1,6 +1,6 @@
 'use client'
 
-import type { IMail, IScenarioMail } from "@/src/model/choicemail/choicemail.model";
+import { IScenarioMail } from "@/src/model/scenario.model";
 import { MyIcon } from "../common/myIcon";
 import { MailButton } from "@/src/ui/button";
 import { useRouter } from "next/navigation";

@@ -556,7 +556,6 @@ export const sohuraData: Record<string, ISohuraMail> = {
       {
         original: '□□□ “□.”□ □□□ “□□□□ □□ □□□□”□□□□ □ □□□□ □□□□□.',
         translated: '당신의 “끝.”이 사실은 “끝없이 잘 지낸다”였다는 걸 이제야 알았어요.',
-        reliability: '높음',
       },
     ],
     ending: { key: 'sh-end-heart', title: '진심이 닿다' },

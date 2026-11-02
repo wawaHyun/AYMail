@@ -9,7 +9,7 @@ export default function ScenarioPage() {
     const router = useRouter();
     const scenario = Object.values(scenarioListData);
 
-    if (!scenario) {
+    if (length === 0) {
         return (
             <div className="flex flex-col items-start gap-4 p-6">
                 <span>진행할수 있는 시나리오가 없습니다. </span>
@@ -26,7 +26,7 @@ export default function ScenarioPage() {
                {scenario.map((mail) => (
                  <button
                    key={mail.id}
-                   onClick={() => router.push(`/mail/starred/${mail.id}`)}
+                   onClick={() => router.push(`/mail/scenario/${mail.id}`)}
                    className="flex h-8 w-full items-center border-b px-2 text-left text-xs transition hover:opacity-80 sm:h-10 sm:px-3 sm:text-sm md:h-12 md:px-4"
                    style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)' }}
                  >

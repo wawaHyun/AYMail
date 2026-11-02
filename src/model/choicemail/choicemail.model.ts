@@ -1,7 +1,5 @@
 // 공용 모델. 이 파일은 시나리오를 모른다. 시나리오 전용 타입은 <별칭>.model.ts에 둔다.
 
-export type ChoiceType = 'positive' | 'negative';
-
 export interface IMailEnding {
   key: string;        // 엔딩 고유 키 (모음 저장용)
   title: string;      // 모음 화면에 보일 이름
@@ -9,11 +7,9 @@ export interface IMailEnding {
 
 // S: 시나리오별 스탯 키. 스탯을 안 쓰는 시나리오(튜토리얼)는 기본값 string
 export interface IReplyOption<S extends string = string> {
-  type?: ChoiceType;           // 튜토리얼 전용 (positive는 버튼 강조)
   label: string;               // 버튼 문구 (예: "받아들인다")
   replyBody?: string;          // 스레드에 남길 답장 (없으면 label을 쓴다)
   nextMailId?: string | null;  // 문자열=다음 메일 고정, null=엔딩, 없음=풀에서 뽑기
-  endingType?: 'success' | 'fail';
   stat?: S;                    // 오르는 스탯 (화면에 표시하지 않음, 없으면 0점)
   skip?: boolean;              // '답장하지 않는다' (잠수 +1)
 }
@@ -53,7 +49,6 @@ export interface IReplyMail<S extends string = string> extends IMail {
 
 export interface IMailLog {
   mailId: string;              // 받은 시나리오 메일
-  repliedWith?: ChoiceType;    // 유저가 고른 선택 (튜토리얼)
   choiceIndex?: number;        // 고른 선택지 번호 (replies 배열 순서 기준)
   replyBody?: string;          // 보낸 답장 내용
   receivedAt: string;

@@ -1,4 +1,5 @@
-import { IScenarioMail } from "@/src/model/choicemail/choicemail.model";
+import { IScenarioMail } from "@/src/model/scenario.model";
+
 
 // 지금 플레이할 수 있는 시나리오. 나머지는 "준비 중"으로 보여준다.
 export const OPEN_SCENARIO_IDS = ["sce-01", "sce-02"];

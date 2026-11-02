@@ -1,4 +1,4 @@
-import { IMail } from "./choicemail/choicemail.model";
+import { IMail } from "./choicemail.model";
 
 export interface IFirstletterMail extends IMail {
   kind: 'firstletter';

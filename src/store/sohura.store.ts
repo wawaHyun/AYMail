@@ -1,7 +1,6 @@
 'use client'
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import type { ISohuraEventChoice, ISohuraStats } from '../model/choicemail/sohura.model';
 
 export interface ISohuraStoreData {
     stats: ISohuraStats;
