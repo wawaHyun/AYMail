@@ -4,7 +4,7 @@ import { MyIcon } from "./myIcon";
 import { useGlobalStateAction, useGlobalStateData } from "@/src/store/globalState.store";
 import { useRouter } from "next/navigation";
 import { useEndingAction } from "@/src/store/ending.store";
-import { useMailAction } from "@/src/store/mail.store";
+import { useMailAction } from "@/src/store/choicemail.store";
 
 export function TopbarMenu() {
     const globalState = useGlobalStateData()

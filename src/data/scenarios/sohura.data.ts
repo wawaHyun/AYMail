@@ -3,7 +3,7 @@ import type {
   ISohuraReply,
   ISohuraScenario,
   SohuraStatKey,
-} from "@/src/model/sohura.model";
+} from "@/src/model/choicemail/sohura.model";
 
 const getStatRange = (stats: Record<SohuraStatKey, number>) => {
   const v = Object.values(stats);

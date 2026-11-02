@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from "react";
-import type { IMail, IReplyOption } from "@/src/model/mail.model";
+import type { IMail, IReplyOption } from "@/src/model/choicemail/choicemail.model";
 import { MailDetailToolbar } from "./mailDetailToolbar";
 import { MailButton } from "@/src/ui/button";
 import { MyIcon } from "../common/myIcon";
 import { firLetterData } from "@/src/data/scenarios/firLetter.data";
 import { useEndingAction } from "@/src/store/ending.store";
-import { useMailAction, useMailData } from "@/src/store/mail.store";
+import { useMailAction, useMailData } from "@/src/store/choicemail.store";
 
 export function MailThread({ mail }: { mail: IMail }) {
     const log = useMailData().find((l) => l.mailId === mail.id);

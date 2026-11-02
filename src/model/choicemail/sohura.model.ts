@@ -1,4 +1,4 @@
-import type { IReplyMail, IReplyOption, IReplyScenario } from './mail.model';
+import type { IReplyMail, IReplyOption, IReplyScenario } from './choicemail.model';
 
 export type SohuraStatKey = 'literal' | 'kind' | 'bold'; // 충실 / 다정 / 대담
 export type ISohuraMail = IReplyMail<SohuraStatKey>;

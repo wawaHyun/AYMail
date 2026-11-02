@@ -1,5 +1,5 @@
-import { MailDetail } from '@/src/component/mail/mailDetail';
-import { EndingUnlocker } from '@/src/component/mail/endingUnlocker';
+import { MailDetail } from '@/src/component/choicemail/mailDetail';
+import { EndingUnlocker } from '@/src/component/choicemail/endingUnlocker';
 import { Suspense } from 'react';
 
 export default function EndingDetailPage({ params }: { params: Promise<{ id: string }> }) {

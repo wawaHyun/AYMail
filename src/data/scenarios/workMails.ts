@@ -1,4 +1,4 @@
-import { IMail } from "@/src/model/mail.model";
+import { IMail } from "@/src/model/choicemail/choicemail.model";
 
 export const workMails: Record<string, IMail> = {
   'work-01': {

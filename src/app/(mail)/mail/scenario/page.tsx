@@ -1,7 +1,7 @@
 "use client";
 
 import { BottomMenu } from "@/src/component/common/bottombar";
-import { MailListToolbarMenu } from "@/src/component/mail/mailListToolbar";
+import { MailListToolbarMenu } from "@/src/component/choicemail/mailListToolbar";
 import { scenarioListData } from "@/src/data/scenarios/scenario.data";
 import { useRouter } from "next/navigation";
 

@@ -1,7 +1,7 @@
 'use client'
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { IMailLog, IReplyOption } from '../model/mail.model';
+import { IMailLog, IReplyOption } from '../model/choicemail/choicemail.model';
 import { getEndingState } from './ending.store';
 
 interface MailState {

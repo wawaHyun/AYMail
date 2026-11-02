@@ -7,9 +7,9 @@ import { usePagination } from '@/src/hook/usePagination';
 import { Pagination } from '@/src/component/common/pagination';
 import { mailRegistry } from '@/src/data/menu/registry';
 import { workMails } from '@/src/data/scenarios/workMails';
-import type { IMail } from '@/src/model/mail.model';
-import { useMailData } from '@/src/store/mail.store';
-import { MailListToolbarMenu } from '@/src/component/mail/mailListToolbar';
+import type { IMail } from '@/src/model/choicemail/choicemail.model';
+import { useMailData } from '@/src/store/choicemail.store';
+import { MailListToolbarMenu } from '@/src/component/choicemail/mailListToolbar';
 
 const PAGE_SIZE = 15;
 

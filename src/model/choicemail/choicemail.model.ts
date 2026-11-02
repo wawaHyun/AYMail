@@ -36,10 +36,6 @@ export interface IMail {
   ending?: IMailEnding;      // 엔딩 메일일 때만
 }
 
-export interface IFirstletterMail extends IMail {
-  kind: 'firstletter';
-}
-
 // 편지 한 통. 전달 편지가 여러 통일 수 있어서 배열로 쓴다
 export interface ILetter {
   sender?: string;      // 전달 편지의 발신자 (postman형에서 사용)
@@ -48,16 +44,11 @@ export interface ILetter {
   note?: string;        // 번역기 메모
   reliability?: string; // '낮음' | '중간'
 }
-
 // 스탯 선택지 시나리오 공용 폼. 시나리오는 S에 자기 스탯 키만 넣는다 (예: ISohuraMail)
 export interface IReplyMail<S extends string = string> extends IMail {
   form: 'letter' | 'postman';           // letter: 연인의 편지, postman: Postman의 업무 메일
   letters?: ILetter[];
   replies?: IReplyOption<S>[];
-}
-
-export interface IScenarioMail extends IMail {
-  entry: string;               // 이동할 경로 (예: '/mail')
 }
 
 export interface IMailLog {

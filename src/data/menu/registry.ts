@@ -1,4 +1,4 @@
-import { IMail } from "@/src/model/mail.model";
+import { IMail } from "@/src/model/choicemail/choicemail.model";
 import { workMails } from "../scenarios/workMails";
 import { firLetterData } from "../scenarios/firLetter.data";
 import { sohuraData } from "../scenarios/sohura.data";
